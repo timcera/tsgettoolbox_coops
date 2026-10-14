@@ -60,7 +60,7 @@ jobs:
             - name: Install dependencies pytest
               run: |
                   python -m pip install --upgrade pip
-                  python -m pip install pytest pytest-cov
+                  python -m pip install pytest
 
             - name: >
                   Install package and dependencies
@@ -72,20 +72,4 @@ jobs:
 
             - name: Test with pytest
               run: |
-                  python -m pytest --cov
-
-            - name: Upload coverage data to coveralls.io
-              uses: coverallsapp/github-action@v2
-              with:
-                  parallel: true
-                  fail-on-error: false
-
-    finish:
-        needs: test
-        if: ${{ always() }}
-        runs-on: ubuntu-latest
-        steps:
-            - name: Coveralls Finished
-              uses: coverallsapp/github-action@v2
-              with:
-                  parallel-finished: true
+                  python -m pytest
